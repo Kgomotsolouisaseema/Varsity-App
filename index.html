@@ -3,55 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <title>Varsity App </title>
+    <style>
+      *{
+        background-position: 0%;
+      }
+      /* .dropdownCourses{
+         display:    
+      }
+       */
+    </style>
 </head>
 <body>
 <div class="container">
 
-<h2> Varsity Application Page</h2><br>
-<p style="font-style: italic;"><bold>Check if  you qualify for Courses Here:</bold></p>
+<h2> Varsity Application Page</h2>
+<p>Check if  you qualify for Courses Here:</p>
 
 <fieldset>
     <legend >APS SCORE </legend>
-    <div class="dropdown" style="width: 150px;">
-      <div class="custom-select" style="width:200px;">
-  <select>
-    <option value="0">Select APS Score:</option>
-    <option value="1">less than 20</option>
-    <option value="2">21 - 25</option>
-    <option value="3">26 - 29</option>
-    <option value="3">30 - 35</option>
-    <option value="3">35 - above </option>
+    <div class="dropdown" >
+      <div >
+  <select name="apsScore" id="apsSelect">
+    <option >SELECT APS SCORE:</option>
+    <option value="0">LESS THAN 20</option>
+    <option value="20">20 - 25</option>
+    <option value="26">26 - 29</option>
+    <option value="30">30 and above</option>
+   
   </select>
-
-</div>
-     
-    </div>
-    </div>
-  <!-- </fieldset> -->
-  <fieldset id="subjects"> 
-    <legend>School Subjects</legend>
-  <div class="subjects" onclick="">
-    <label><input type="checkbox" name="" value="">English </label>
-    <label><input type="checkbox" name="" value="">Second Language</label>
-    <label><input type="checkbox" name="" value="">Maths </label> <br>
-    <br>
-    <label><input type="checkbox" name="" value="">Maths Literacy</label>
-    <label><input type="checkbox" name="" value="">Life Science</label>
-    <label><input type="checkbox" name="" value="">Geography</label>
-  </div>
 </fieldset>
 
+<fieldset id="subjects"> 
+  <legend>SCHOOL SUBJECTS</legend>
+  <div class="subjects" onclick="">
+    <label><input type="checkbox" name="" value=""> English  </label>
+    <label><input type="checkbox" name="" value=""> Second Languages </label>
+    <label><input type="checkbox" name="" value=""> Mathematics  </label> <br>
+    <br>
+    <label><input type="checkbox" name="" value=""> Maths Literacy </label>
+    <label><input type="checkbox" name="" value=""> Science </label>
+    <label><input type="checkbox" name="" value="">Natural Science </label><br>
+    <br>
+    <label><input type="checkbox" name="" value=""> Arts and Design </label>
+    <label><input type="checkbox" name="" value=""> Geography </label>
+    <label><input type="checkbox" name="" value=""> Economics and Business </label>
+    <!-- <label><input type="checkbox" name="" value=""></label> -->
+  </div>
+  <br>
+  <button id="btn1" onclick="checkCourses()">Submit</button>
+  <br>
+</fieldset>
 
-
-
+<fieldset>
+  <legend >COURSES </legend>
+  <div class="dropdownCourses" >
+  <div class="qualified" >
+<select>
+  <option value="0">VARSITY COURSES:  </option>
+  <option value="IT1">IT : Computer Engineering</option>
+  <option value="IT2">IT : Software Development</option>
+  <option value="IT3">IT : Web and App Development</option>
+  <option value="S1">Science : Bio-Technology</option>
+  <option value="S2">Science : Chemistry </option>
+  <option value="S3">Science : Industry Physics</option>
+  <option value="AD1">Art & Design : Design</option>
+  <option value="AD2">Art & Design : Performaing Arts </option>
+  <option value="AD3">Art & Design : Fine Arts</option>
+  <option value="H1">Humanities : Education </option>
+  <option value="H2">Humanities : Journalism </option>
+  <br>
+</select>
+</div>
+</div>
+<br>
+<button id="btn">Submit Application </button>
+<br>
 </div>
 
 
 
-
-
-    <script src="script.js"> </script>
+  <script src="script.js"> </script>
+  
 </body>
 </html>

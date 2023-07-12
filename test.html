@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="accommodation" id="accommodation-select">
+        <option value="">--Please choose an option--</option>
+        <option value="apartment">Apartment</option>
+        <option value="house">House</option>
+        <option value="other">Other</option>
+      </select>
+<script>
+
+const accommodationSelect = document.getElementById("accommodation-select");
+accommodationSelect.addEventListener("change", handleSelectChange);
+const value = accommodationSelect.value;
+
+function handleSelectChange(event) {
+  const currentValue = event.target.value;
+  console.log(currentValue);
+}
+
+
+//function to get the value of aps score from user and compare  it with the faculties they qualify for:
+function onApsScoreSelected(event){
+    const currentScore = event.target.value;
+    console.log(faculties[0].courses[0].requirements.aps)
+    let apsScore = faculties[0].courses[0].requirements.aps
+}
+        if(currentScore >= apsScore){
+            console.log("User Qualifies")
+        }else{
+            console.log("User doesnt qualifies for this course")
+        }
+
+    
+</script>  
+</body>
+</html>
