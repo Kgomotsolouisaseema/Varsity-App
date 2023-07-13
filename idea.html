@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Selection</title>
+</head>
+<body>
+  <select id="apsSelect">
+    <option value="">Select APS Score Range</option>
+    <option value="80-100">80-100</option>
+    <option value="60-79">60-79</option>
+    <option value="0-59">0-59</option>
+  </select>
+  <br><br>
+  <input type="checkbox" id="subject1" value="Subject 1" onchange="onSubjectChecked(event)">
+  <label for="subject1">Subject 1</label>
+  <br>
+  <input type="checkbox" id="subject2" value="Subject 2" onchange="onSubjectChecked(event)">
+  <label for="subject2">Subject 2</label>
+  <br>
+  <input type="checkbox" id="subject3" value="Subject 3" onchange="onSubjectChecked(event)">
+  <label for="subject3">Subject 3</label>
+  <br><br>
+  <button id="submitButton" onclick="checkCourses()">Submit</button>
+
+  <script>
+    const faculties = [
+    { name: 'IT', courses: [
+        { courseName: 'Computer Engineering', requirements: {
+            aps: 30, subjects: [ 'Maths', 'Science' ]
+        }},
+        { courseName: 'Information Technology: Software Development', requirements: {
+            aps: 26, subjects: [ 'Maths', 'Science' ]
+        }},
+        { courseName: 'Information Technology: Web and Application Development', requirements: {
+            aps: 20, subjects: [ 'Maths', 'Science' ]
+        }}
+    ]},
+    { name: 'Science', courses: [
+        { courseName: 'Biotechnology', requirements: {
+            aps: 30, subjects: [ 'Maths', 'Science', 'Life Sciences' ]
+        }},
+        { courseName: 'Chemistry', requirements: {
+            aps: 26, subjects: [ 'Maths', 'Science' ]
+        }},
+        { courseName: 'Industry Physics', requirements: {
+            aps: 20, subjects: [ 'Maths', 'Science' ]
+        }}
+    ]},
+    { name: 'Art & Design', courses: [
+        { courseName: 'Design', requirements: {
+            aps: 30, subjects: [ 'Maths', 'Science' ]
+        }},
+        { courseName: 'Performing Arts', requirements: {
+            aps: 26, subjects: [ 'Maths', 'Science' ]
+        }},
+        { courseName: 'Fine Art', requirements: {
+            aps: 20, subjects: [ 'Maths', 'Science' ]
+        }}
+    ]},
+    { name: 'Humanities', courses: [
+        { courseName: 'Education', requirements: {
+            aps: 30, subjects: [ 'Maths', 'Science', 'English' ]
+        }},
+        { courseName: 'Journalism', requirements: {
+            aps: 26, subjects: [ 'Maths', 'Science', 'English' ]
+        }}
+    ]}
+] 
+
+    const courses = [];
+let studentsCourses = [];
+
+let btn1Enabled = false;
+let selectedScoreRange = "";
+let subjectsSelected = [];
+
+const apsScoreRange = document.getElementById("apsSelect");
+apsScoreRange.addEventListener("change", onApsScoreSelected);
+
+// APS score function
+function onApsScoreSelected(event) {
+  const currentApsScore = event.target.value;
+  selectedScoreRange = currentApsScore; // Store the selected APS score range
+
+  for (let i = 0; i < faculties.length; i++) {
+    const faculty = faculties[i];
+    for (let j = 0; j < faculty.courses.length; j++) {
+      const course = faculty.courses[j];
+      if (currentApsScore >= course.requirements.aps) {
+        console.log("User Qualifies for course: ", course.name);
+        // Add the course to studentsCourses array
+        studentsCourses.push(course);
+      } else {
+        console.log("User doesn't qualify for course: ", course.name);
+      }
+    }
+  }
+
+  enableButtonIfValid();
+}
+
+// Subjects Selected Function
+function onSubjectChecked(event) {
+  const selectedSubject = event.target.value;
+  subjectsSelected.push(selectedSubject);
+  enableButtonIfValid();
+}
+
+// Button Enabled when user selects APS score range and at least 1 subject
+function enableButtonIfValid() {
+  if (selectedScoreRange && subjectsSelected.length > 0) {
+    btn1Enabled = true;
+  } else {
+    btn1Enabled = false;
+  }
+}
+
+// checkCourses Function called when the submit button is clicked only when user has selected range and subject
+function checkCourses() {
+  if (btn1Enabled) {
+    // Your logic for checking courses and performing necessary actions
+    console.log("Checking courses...");
+    console.log("Selected Subjects: ", subjectsSelected);
+    console.log("Student's Courses: ", studentsCourses);
+  } else {
+    console.log("Please select APS score range and at least 1 subject.");
+  }
+}
+
+  </script>
+</body>
+</html>

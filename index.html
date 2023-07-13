@@ -9,10 +9,10 @@
       *{
         background-position: 0%;
       }
-      /* .dropdownCourses{
-         display:    
-      }
-       */
+       .dropdownCourses{
+         display: disabled  
+      } 
+      
     </style>
 </head>
 <body>
@@ -35,31 +35,31 @@
   </select>
 </fieldset>
 
-<fieldset id="subjects"> 
+<fieldset > 
   <legend>SCHOOL SUBJECTS</legend>
-  <div class="subjects" onclick="">
-    <label><input type="checkbox" name="" value=""> English  </label>
-    <label><input type="checkbox" name="" value=""> Second Languages </label>
-    <label><input type="checkbox" name="" value=""> Mathematics  </label> <br>
+  <div class="subjects" >
+    <label for="subject1"><input type="checkbox" id="subject1" value="English" onchange="onSubjectChecked(event)"   > English  </label>
+    <label for="subject2"><input type="checkbox" id="subject2" value="Second Languages"onchange="onSubjectChecked(event)"> Second Languages </label>
+    <label for="subject3"><input type="checkbox" id="subject3" value="Mathematics" onchange="onSubjectChecked(event)"> Mathematics  </label> <br>
     <br>
-    <label><input type="checkbox" name="" value=""> Maths Literacy </label>
-    <label><input type="checkbox" name="" value=""> Science </label>
-    <label><input type="checkbox" name="" value="">Natural Science </label><br>
+    <label for="subject4"><input type="checkbox" id="subject4" value="Maths Literacy" onchange="onSubjectChecked(event)"> Maths Literacy </label>
+    <label for="subject5"><input type="checkbox" id="subject5" value="Science " onchange="onSubjectChecked(event)"> Science </label>
+    <label for="subject6"><input type="checkbox" id="subject6" value="Natural Science" onchange="onSubjectChecked(event)">Natural Science </label><br>
     <br>
-    <label><input type="checkbox" name="" value=""> Arts and Design </label>
-    <label><input type="checkbox" name="" value=""> Geography </label>
-    <label><input type="checkbox" name="" value=""> Economics and Business </label>
-    <!-- <label><input type="checkbox" name="" value=""></label> -->
+    <label for="subject7"><input type="checkbox" id="subject7" value=" Arts and Design" onchange="onSubjectChecked(event)"> Arts and Design </label>
+    <label for="subject8"><input type="checkbox" id="subject8" value="Geography " onchange="onSubjectChecked(event)"> Geography </label>
+    <label for="subject9"><input type="checkbox" id="subject9" value="Economics and Business" onchange="onSubjectChecked(event)"> Economics and Business </label> 
   </div>
   <br>
-  <button id="btn1" onclick="checkCourses()">Submit</button>
+  <button id="btn1" onclick="checkCourses()"   >Check Course :</button>
+  <!-- <input type="submit" value="Submit Form" disabled> -->
   <br>
 </fieldset>
 
 <fieldset>
-  <legend >COURSES </legend>
-  <div class="dropdownCourses" >
-  <div class="qualified" >
+<legend >COURSES </legend>
+<div  >
+<div class="dropdownCourses" >
 <select>
   <option value="0">VARSITY COURSES:  </option>
   <option value="IT1">IT : Computer Engineering</option>
@@ -78,11 +78,11 @@
 </div>
 </div>
 <br>
+<div id="studentCanApply">  
+   </div>
 <button id="btn">Submit Application </button>
 <br>
 </div>
-
-
 
   <script src="script.js"> </script>
   
