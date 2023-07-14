@@ -9,9 +9,7 @@
       *{
         background-position: 0%;
       }
-       .dropdownCourses{
-         display: disabled  
-      } 
+       
       
     </style>
 </head>
@@ -51,7 +49,7 @@
     <label for="subject9"><input type="checkbox" id="subject9" value="Economics and Business" onchange="onSubjectChecked(event)"> Economics and Business </label> 
   </div>
   <br>
-  <button id="btn1" onclick="checkCourses()"   >Check Course :</button>
+  <button id="btn1" onclick="checkCourses()"  >Check Course :</button>  
   <!-- <input type="submit" value="Submit Form" disabled> -->
   <br>
 </fieldset>
@@ -59,28 +57,53 @@
 <fieldset>
 <legend >COURSES </legend>
 <div  >
-<div class="dropdownCourses" >
-<select>
+<div >
+<select id="dropdownCourses">
   <option value="0">VARSITY COURSES:  </option>
-  <option value="IT1">IT : Computer Engineering</option>
-  <option value="IT2">IT : Software Development</option>
-  <option value="IT3">IT : Web and App Development</option>
-  <option value="S1">Science : Bio-Technology</option>
-  <option value="S2">Science : Chemistry </option>
-  <option value="S3">Science : Industry Physics</option>
-  <option value="AD1">Art & Design : Design</option>
-  <option value="AD2">Art & Design : Performaing Arts </option>
-  <option value="AD3">Art & Design : Fine Arts</option>
-  <option value="H1">Humanities : Education </option>
-  <option value="H2">Humanities : Journalism </option>
+  <br>
+  <option value="IT : Computer Engineering" >IT : Computer Engineering</option>
+  <option value="IT : Software Development">IT : Software Development</option>
+  <option value="IT : Web and App Development">IT : Web and App Development</option>
+  <option value="Science : Bio-Technology">Science : Bio-Technology</option>
+  <option value="Science : Chemistry">Science : Chemistry </option>
+  <option value="Science : Industry Physics">Science : Industry Physics</option>
+  <option value="Art & Design : Design">Art & Design : Design</option>
+  <option value="Art & Design : Performaing Arts">Art & Design : Performaing Arts </option>
+  <option value="Art & Design : Fine Arts">Art & Design : Fine Arts</option>
+  <option value="Humanities : Education ">Humanities : Education </option>
+  <option value="Humanities : Journalism">Humanities : Journalism </option>
   <br>
 </select>
+<span class="output"></span>  <!--value of the option is selected-->
+<button onclick="getCourse()">Select Course</button>
+
+</div>
+<div id="studentCanApply"> </div>
+<div>
+  <br>
+<fieldset>
+  <br>
+<legend>Apply Here :</legend>
+<form id="application-form">
+  <label for="name">Name:</label><br><input type="text" id="name" name="name" required>
+  <br>
+  <label for="id">ID:</label><br><input type="text" id="id" name="id" required>
+  <br>
+  <label for="age">Age:</label><br><input type="number" id="age" name="age" required>
+  <br>
+  <label for="email">Email Address:<br>  </label><input type="email" id="email" name="email" required>
+  <br>
+  <!-- <label for="email">Courses:<br>  </label><input type="email" id="email" name="email" required> -->
+  <br>
+</form>
+<br>
+<button id="btn" onclick="submitApplication()"  >Submit Application </button>
+</fieldset>
 </div>
 </div>
 <br>
-<div id="studentCanApply">  
-   </div>
-<button id="btn">Submit Application </button>
+
+
 <br>
 </div>
 
