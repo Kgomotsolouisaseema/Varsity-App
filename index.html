@@ -33,7 +33,25 @@
   </select>
 </fieldset>
 
-<fieldset > 
+<fieldset>
+  <legend>SCHOOL SUBJECTS</legend>
+  <div class="subjects">
+    <label for="subject1"><input type="checkbox" id="subject1" value="English" onchange="onSubjectChecked(event)"> English</label>
+    <label for="subject2"><input type="checkbox" id="subject2" value="Second Languages" onchange="onSubjectChecked(event)"> Second Languages</label>
+    <label for="subject3"><input type="checkbox" id="subject3" value="Mathematics" onchange="onSubjectChecked(event)"> Mathematics</label><br><br>
+    <label for="subject4"><input type="checkbox" id="subject4" value="Maths Literacy" onchange="onSubjectChecked(event)"> Maths Literacy</label>
+    <label for="subject5"><input type="checkbox" id="subject5" value="Science" onchange="onSubjectChecked(event)"> Science</label>
+    <label for="subject6"><input type="checkbox" id="subject6" value="Natural Science" onchange="onSubjectChecked(event)"> Natural Science</label><br><br>
+    <label for="subject7"><input type="checkbox" id="subject7" value="Arts and Design" onchange="onSubjectChecked(event)"> Arts and Design</label>
+    <label for="subject8"><input type="checkbox" id="subject8" value="Geography" onchange="onSubjectChecked(event)"> Geography</label>
+    <label for="subject9"><input type="checkbox" id="subject9" value="Economics and Business" onchange="onSubjectChecked(event)"> Economics and Business</label>
+  </div>
+  <br>
+  <button id="btn1" onclick="checkCourses()" disabled>Check Course</button>
+  <br>
+</fieldset>
+
+<!-- <fieldset > 
   <legend>SCHOOL SUBJECTS</legend>
   <div class="subjects" >
     <label for="subject1"><input type="checkbox" id="subject1" value="English" onchange="onSubjectChecked(event)"   > English  </label>
@@ -49,10 +67,9 @@
     <label for="subject9"><input type="checkbox" id="subject9" value="Economics and Business" onchange="onSubjectChecked(event)"> Economics and Business </label> 
   </div>
   <br>
-  <button id="btn1" onclick="checkCourses()"  >Check Course :</button>  
-  <!-- <input type="submit" value="Submit Form" disabled> -->
+  <button id="btn1" onclick="checkCourses()" disabled >Check Course :</button>  
   <br>
-</fieldset>
+</fieldset> -->
 
 <fieldset>
 <legend >COURSES </legend>
@@ -85,13 +102,13 @@
   <br>
 <legend>Apply Here :</legend>
 <form id="application-form">
-  <label for="name">Name:</label><br><input type="text" id="name" name="name" required>
+  <label for="name">Name:</label><br><input type="text" placeholder="kgomotso " id="name" name="name" required>
   <br>
-  <label for="id">ID:</label><br><input type="text" id="id" name="id" required>
+  <label for="id">ID:</label><br><input type="text"  placeholder="1332 5148 8542 6"  id="id" name="id" required>
   <br>
-  <label for="age">Age:</label><br><input type="number" id="age" name="age" required>
+  <label for="age">Age:</label><br><input type="number"   id="age" name="age" required>
   <br>
-  <label for="email">Email Address:<br>  </label><input type="email" id="email" name="email" required>
+  <label for="email">Email Address:<br>  </label><input type="email" placeholder="kgomotso@gmail.com" id="email" name="email" required>
   <br>
   <!-- <label for="email">Courses:<br>  </label><input type="email" id="email" name="email" required> -->
   <br>

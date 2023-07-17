@@ -103,7 +103,7 @@ let course = [];
 let studentsCourses = []; //this array will collect the initial course that user qualifies for when btn1 is clicked
 // let qualifyingCourses = []; 
 
-let btn1Enabled = false; //Initialized check Course button to false at first
+const btn1 = document.getElementById("btn1"); //Initialized check Course button to false at first
 let selectedScoreRange = " "; //holds the selected range of APS scores from user
 
 let subjectsSelected = []; // this array holds the selected subjects from the user
@@ -142,17 +142,20 @@ function onSubjectChecked(event) {
 }
 
 // Button Enabled when user selects APS score range and at least 1 subject . i should add functionaliity to enabled the button.
+
 function enableButtonIfValid() {
   if (selectedScoreRange && subjectsSelected.length > 0) {
-    btn1Enabled = true;
+    btn1.disabled = false;
   } else {
-    btn1Enabled = false;
+    btn1.disabled = true;
   }
 }
 
 // checkCourses Function called when the submit button is clicked only when user has selected range and subject
+
 function checkCourses() {
-  if (btn1Enabled) {
+  if (btn1) {
+    // console.log(checkCourses);
 //  logic for checking courses and performing necessary actions
     console.log("Checking courses...");
     console.log("Selected Subjects: ", subjectsSelected);
@@ -191,41 +194,49 @@ function submitApplication(){
   // console.log("Course: " + applicationData[4]);
   alert("Your application has been submitted , Thank you !");
 
-   // Optionally,reset the form fields after submission.
-   document.getElementById("application-form").reset();
+  // Optionally,reset the form fields after submission.
+  document.getElementById("application-form").reset();
 
 }
 
-function getCourse(){
-  selectCourse =document.getElementById("dropdownCourses");
-  console.log(selectCourse);
-  output= selectCourse.options[selectCourse.selectedIndex].value; //this gets the options from the dropdown list of course
+//function gets the users selected courses but it should only get the qualifying courses from user. 
+function getCourse() {
+  const selectCourse = document.getElementById("dropdownCourses");
+  const selectedCourse = selectCourse.options[selectCourse.selectedIndex].value;
+  document.querySelector(".output").textContent = selectedCourse;
+}
 
-  document.querySelector('.output').textContent = output;
+
+// function getCourse(){
+//   selectCourse =document.getElementById("dropdownCourses");
+//   console.log(selectCourse);
+//   output= selectCourse.options[selectCourse.selectedIndex].value; //this gets the options from the dropdown list of course
+
+//   document.querySelector('.output').textContent = output;
       
-}
+// }
 // this function was supposed to filter the users qualifying courses and then can they apply, it has not worked  yet as of 3:31pm friday 
 
-// function limitCourseApply() {
-//   let selectEle = document.getElementById("dropdownCourses");
-//   for (let a = 0; a < selectEle.options.length; a++) {
-//     let option = selectEle.options[a];
-//     if (qualifyingCourses.some(course => course.courseName === option.value)) {
-//       option.disabled = false;
-//     } else {
-//       option.disabled = true;
-//     }
-//   }
+function limitCourseApply() {
+  let selectEle = document.getElementById("dropdownCourses");
+  for (let a = 0; a < selectEle.options.length; a++) {
+    let option = selectEle.options[a];
+    if (qualifyingCourses.some(course => course.courseName === option.value)) {
+    option.disabled = false;
+    } else {
+    option.disabled = true;
+    }
+  }
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   onApsScoreSelected({ target: apsScoreRange }); // Pass a mock event to trigger the function
-//   const subjectCheckboxes = document.querySelectorAll('.subjects input[type="checkbox"]');
-//   subjectCheckboxes.forEach(checkbox => {
-//     checkbox.addEventListener('change', function(event) {
-//       onSubjectChecked(event);
-//     });
-//   });
+document.addEventListener("DOMContentLoaded", function() {
+  onApsScoreSelected({ target: apsScoreRange }); // Pass a mock event to trigger the function
+  const subjectCheckboxes = document.querySelectorAll('.subjects input[type="checkbox"]');
+  subjectCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function(event) {
+      onSubjectChecked(event);
+    });
+  });
 
-//   limitCourseApply();
-// });
-
+  limitCourseApply();
+});
+};

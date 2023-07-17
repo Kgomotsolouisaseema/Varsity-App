@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varsity App</title>
+  <style>
+    * {
+      background-position: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Varsity Application Page</h2>
+    <p>Check if you qualify for Courses Here:</p>
+
+    <fieldset>
+      <legend>APS SCORE</legend>
+      <div class="dropdown">
+        <select name="apsScore" id="apsSelect" onchange="onApsScoreSelected(event)">
+          <option>SELECT APS SCORE:</option>
+          <option value="0">LESS THAN 20</option>
+          <option value="20">20 - 25</option>
+          <option value="26">26 - 29</option>
+          <option value="30">30 and above</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>SCHOOL SUBJECTS</legend>
+      <div class="subjects">
+        <label for="subject1"><input type="checkbox" id="subject1" value="English" onchange="onSubjectChecked(event)"> English</label>
+        <label for="subject2"><input type="checkbox" id="subject2" value="Second Languages" onchange="onSubjectChecked(event)"> Second Languages</label>
+        <label for="subject3"><input type="checkbox" id="subject3" value="Mathematics" onchange="onSubjectChecked(event)"> Mathematics</label><br><br>
+        <label for="subject4"><input type="checkbox" id="subject4" value="Maths Literacy" onchange="onSubjectChecked(event)"> Maths Literacy</label>
+        <label for="subject5"><input type="checkbox" id="subject5" value="Science" onchange="onSubjectChecked(event)"> Science</label>
+        <label for="subject6"><input type="checkbox" id="subject6" value="Natural Science" onchange="onSubjectChecked(event)"> Natural Science</label><br><br>
+        <label for="subject7"><input type="checkbox" id="subject7" value="Arts and Design" onchange="onSubjectChecked(event)"> Arts and Design</label>
+        <label for="subject8"><input type="checkbox" id="subject8" value="Geography" onchange="onSubjectChecked(event)"> Geography</label>
+        <label for="subject9"><input type="checkbox" id="subject9" value="Economics and Business" onchange="onSubjectChecked(event)"> Economics and Business</label>
+      </div>
+      <br>
+      <button id="btn1" onclick="checkCourses()" disabled>Check Course</button>
+      <br>
+    </fieldset>
+
+    <fieldset>
+      <legend>COURSES</legend>
+      <div>
+        <select id="dropdownCourses">
+          <option value="0">VARSITY COURSES:</option>
+          <option value="IT : Computer Engineering">IT : Computer Engineering</option>
+          <option value="IT : Software Development">IT : Software Development</option>
+          <option value="IT : Web and App Development">IT : Web and App Development</option>
+          <option value="Science : Bio-Technology">Science : Bio-Technology</option>
+          <option value="Science : Chemistry">Science : Chemistry</option>
+          <option value="Science : Industry Physics">Science : Industry Physics</option>
+          <option value="Art & Design : Design">Art & Design : Design</option>
+          <option value="Art & Design : Performing Arts">Art & Design : Performing Arts</option>
+          <option value="Art & Design : Fine Arts">Art & Design : Fine Arts</option>
+          <option value="Humanities : Education">Humanities : Education</option>
+          <option value="Humanities : Journalism">Humanities : Journalism</option>
+        </select>
+        <span class="output"></span>
+        <button onclick="getCourse()">Select Course</button>
+      </div>
+      <div id="studentCanApply"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Apply Here:</legend>
+      <form id="application-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id" required><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+        <label for="email">Email Address:<br></label>
+        <input type="email" id="email" name="email" required><br>
+        <br>
+        <button id="btn" onclick="submitApplication()">Submit Application</button>
+      </form>
+    </fieldset>
+  </div>
+
+  <script>
+    const faculties = [
+      {
+        name: "IT",
+        courses: [
+          {
+            courseName: "Computer Engineering",
+            requirements: {
+              aps: 30,
+              subjects: ["Mathematics", "Science"]
+            }
+          },
+          {
+            courseName: "Software Development",
+            requirements: {
+              aps: 26,
+              subjects: ["Mathematics", "Science"]
+            }
+          },
+          {
+            courseName: "Web and App Development",
+            requirements: {
+              aps: 20,
+              subjects: ["Mathematics", "Science"]
+            }
+          }
+        ]
+      },
+      {
+        name: "Science",
+        courses: [
+          {
+            courseName: "Bio-Technology",
+            requirements: {
+              aps: 30,
+              subjects: ["Mathematics", "Science", "Life Sciences"]
+            }
+          },
+          {
+            courseName: "Chemistry",
+            requirements: {
+              aps: 26,
+              subjects: ["Mathematics", "Science"]
+            }
+          },
+          {
+            courseName: "Industry Physics",
+            requirements: {
+              aps: 20,
+              subjects: ["Mathematics", "Science"]
+            }
+          }
+        ]
+      },
+      {
+        name: "Art & Design",
+        courses: [
+          {
+            courseName: "Design",
+            requirements: {
+              aps: 30,
+              subjects: ["Mathematics", "Science"]
+            }
+          },
+          {
+            courseName: "Performing Arts",
+            requirements: {
+              aps: 26,
+              subjects: ["Mathematics", "Science"]
+            }
+          },
+          {
+            courseName: "Fine Arts",
+            requirements: {
+              aps: 20,
+              subjects: ["Mathematics", "Science"]
+            }
+          }
+        ]
+      },
+      {
+        name: "Humanities",
+        courses: [
+          {
+            courseName: "Education",
+            requirements: {
+              aps: 30,
+              subjects: ["Mathematics", "Science", "English"]
+            }
+          },
+          {
+            courseName: "Journalism",
+            requirements: {
+              aps: 26,
+              subjects: ["Mathematics", "Science", "English"]
+            }
+          }
+        ]
+      }
+    ];
+
+    let selectedScoreRange = "";
+    let subjectsSelected = [];
+    let qualifyingCourses = [];
+
+    function onApsScoreSelected(event) {
+      selectedScoreRange = event.target.value;
+      enableButtonIfValid();
+    }
+
+    function onSubjectChecked(event) {
+      const selectedSubject = event.target.value;
+
+      if (event.target.checked) {
+        subjectsSelected.push(selectedSubject);
+      } else {
+        const index = subjectsSelected.indexOf(selectedSubject);
+        if (index !== -1) {
+          subjectsSelected.splice(index, 1);
+        }
+      }
+
+      enableButtonIfValid();
+    }
+
+    function enableButtonIfValid() {
+      const btn1 = document.getElementById("btn1");
+      if (selectedScoreRange && subjectsSelected.length > 0) {
+        btn1.disabled = false;
+      } else {
+        btn1.disabled = true;
+      }
+    }
+
+    function checkCourses() {
+      qualifyingCourses = faculties.reduce((courses, faculty) => {
+        const facultyCourses = faculty.courses.filter(course => {
+          return (
+            course.requirements.aps <= selectedScoreRange &&
+            subjectsSelected.every(subject => course.requirements.subjects.includes(subject))
+          );
+        });
+        return [...courses, ...facultyCourses];
+      }, []);
+
+      displayQualifyingCourses();
+    }
+
+    function displayQualifyingCourses() {
+      const studentCanApply = document.getElementById("studentCanApply");
+      if (qualifyingCourses.length > 0) {
+        studentCanApply.innerHTML = "You qualify for the following courses:";
+        const coursesList = document.createElement("ul");
+        qualifyingCourses.forEach(course => {
+          const courseItem = document.createElement("li");
+          courseItem.textContent = course.courseName;
+          coursesList.appendChild(courseItem);
+        });
+        studentCanApply.appendChild(coursesList);
+      } else {
+        studentCanApply.innerHTML = "You do not qualify for any courses.";
+      }
+    }
+
+    function getCourse() {
+      const selectCourse = document.getElementById("dropdownCourses");
+      const selectedCourse = selectCourse.options[selectCourse.selectedIndex].value;
+      document.querySelector(".output").textContent = selectedCourse;
+    }
+
+    function submitApplication() {
+      const name = document.getElementById("name").value;
+      const id = document.getElementById("id").value;
+      const age = document.getElementById("age").value;
+      const email = document.getElementById("email").value;
+
+      console.log("Application submitted:");
+      console.log("Name:", name);
+      console.log("ID:", id);
+      console.log("Age:", age);
+      console.log("Email:", email);
+
+      // Optionally, reset the form fields after submission.
+      document.getElementById("application-form").reset();
+    }
+  </script>
+</body>
+</html>
